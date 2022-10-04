@@ -1,0 +1,37 @@
+{
+  "name": "text_engraving",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --config ./src/client/webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HarveyLijh/Text_Engraving.git"
+  },
+  "author": "Jiahong Li",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HarveyLijh/Text_Engraving/issues"
+  },
+  "homepage": "https://github.com/HarveyLijh/Text_Engraving#readme",
+  "devDependencies": {
+    "@types/dat.gui": "^0.7.7",
+    "@types/three": "^0.144.0",
+    "@types/tween.js": "^18.6.1",
+    "json-loader": "^0.5.7",
+    "three": "^0.145.0",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "dat.gui": "^0.7.9"
+  }
+}
