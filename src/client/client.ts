@@ -7,13 +7,12 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
 import { CSG } from './utils/CSGMesh'
 import * as TWEEN from '@tweenjs/tween.js'
 import Bender from './utils/bender'
-import BlackSquare from './assets/imgs/black.jpg'
-import helvetiker_regular from './assets/fonts/helvetiker_regular.typeface.json'
+import  * as helvetiker_regular from './assets/fonts/helvetiker_regular.typeface.json'
 
 const bender = new Bender()
 
 const scene = new THREE.Scene()
-
+// scene.background = new THREE.Color('skyblue' )
 const light1 = new THREE.SpotLight()
 light1.position.set(6.5, 7.5, 7.5)
 light1.angle = Math.PI / 4
@@ -21,7 +20,7 @@ light1.penumbra = 0.5
 scene.add(light1)
 
 const light2 = new THREE.SpotLight()
-light1.position.set(-6.5, 7.5, 7.5)
+light2.position.set(-6.5, 7.5, 7.5)
 light2.angle = Math.PI / 4
 light2.penumbra = 0.5
 scene.add(light2)
@@ -48,21 +47,10 @@ const data = {
     text: 'abc123',
 }
 
-const envTexture = new THREE.CubeTextureLoader().load([
-    BlackSquare,
-    BlackSquare,
-    BlackSquare,
-    BlackSquare,
-    BlackSquare,
-    BlackSquare,
-])
-envTexture.mapping = THREE.CubeReflectionMapping
-
 const material = new THREE.MeshStandardMaterial({
-    envMap: envTexture,
-    metalness: 1.0,
-    roughness: 0.0,
-    color: 0xffd700,
+    metalness: .5,
+    roughness: .5,
+    color: '#049ef4',
 })
 
 const cylinderMesh1 = new THREE.Mesh(

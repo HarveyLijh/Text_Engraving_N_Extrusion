@@ -1,0 +1,12 @@
+{
+    "name": "Default product template",
+    "wrapper": "div#div_id.div_class[attribute-one=value]",
+    "sections": {
+      "main": {
+        "type": "product"
+      }
+    },
+    "order": [
+      "main"
+    ]
+  }
