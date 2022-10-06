@@ -43,10 +43,11 @@ controls.enableDamping = true
 controls.target.z = -5
 
 const data = {
-    text: 'abc123',
-    cube_scale_x: 5,
+    text: 'Text Engrave',
+    cube_scale_x: 10,
     cube_scale_y: 5,
-    cube_scale_z: 5
+    cube_scale_z: 5,
+    modifier:'Engrave'
 }
 
 const material = new THREE.MeshStandardMaterial({
@@ -94,11 +95,12 @@ document.body.appendChild(stats.dom)
 const gui = new GUI()
 
 const lightFolder = gui.addFolder('Ambient Light')
-lightFolder.add(light, 'intensity', 1, 10, 0.5)
+lightFolder.add(light, 'intensity', 0, 10, 0.5)
 lightFolder.open()
 
 const textFolder = gui.addFolder('Text Engraving')
 textFolder.add(data, 'text').onFinishChange(regenerateGeometry)
+textFolder.add(data, 'modifier', [ 'Engrave', 'Extrude' ] ).onFinishChange(regenerateGeometry)
 textFolder.open()
 
 gui.open()
@@ -107,21 +109,23 @@ gui.open()
 function regenerateGeometry() {
     let textGeometry
 
-    textGeometry = new TextGeometry(data.text, {
+    textGeometry = new TextGeometry(data.text.substring(0,12), {
         font: font,
         size: 1,
-        height: 0.2,
+        height: 0.8,
         curveSegments: 2,
     })
 
     textGeometry.center()
     textGeometry.translate(0, 0, 2.4)
-    // const textMesh = new THREE.Mesh(textGeometry, material2);
-    // scene.add(textMesh)
 
     //  reduce the text CSG out of out the original mesh to engrave
     const textCSG = CSG.fromGeometry(textGeometry)
-    const engravedCSG = originMeshCSG.subtract(textCSG)
+    let engravedCSG = originMeshCSG.subtract(textCSG);
+    console.log(data.modifier)
+    if(data.modifier == 'Extrude'){
+        engravedCSG = originMeshCSG.union(textCSG)
+    }
     engravedMesh.geometry.dispose()
     engravedMesh.geometry = CSG.toMesh(
         engravedCSG,
