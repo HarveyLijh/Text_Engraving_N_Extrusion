@@ -55,11 +55,6 @@ const material = new THREE.MeshStandardMaterial({
     roughness: 0,
     color: '#049ef4',
 })
-const material2 = new THREE.MeshStandardMaterial({
-    metalness: .2,
-    roughness: 0,
-    color: 'red',
-})
 // create cube to be engraved
 const cube = new THREE.Mesh(
     new THREE.BoxGeometry(data.cube_scale_x, data.cube_scale_y, data.cube_scale_z),
@@ -105,7 +100,7 @@ textFolder.open()
 
 gui.open()
 
-//  change text engraving based on gui input
+//  change text engraving/extruding based on gui input
 function regenerateGeometry() {
     let textGeometry
 
@@ -122,7 +117,8 @@ function regenerateGeometry() {
     //  reduce the text CSG out of out the original mesh to engrave
     const textCSG = CSG.fromGeometry(textGeometry)
     let engravedCSG = originMeshCSG.subtract(textCSG);
-    console.log(data.modifier)
+    
+    // modify mesh based on toggle's value of extrude or engrave
     if(data.modifier == 'Extrude'){
         engravedCSG = originMeshCSG.union(textCSG)
     }
