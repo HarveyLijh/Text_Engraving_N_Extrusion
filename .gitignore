@@ -127,3 +127,4 @@ out
 .yarn/install-state.gz
 
 package-lock.json
+.DS_Store
