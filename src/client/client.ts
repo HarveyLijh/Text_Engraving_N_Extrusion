@@ -95,12 +95,12 @@ lightFolder.open()
 
 const textFolder = gui.addFolder('Text Engraving')
 textFolder.add(data, 'text').onFinishChange(regenerateGeometry)
-textFolder.add(data, 'modifier', [ 'Engrave', 'Extrude' ] ).onFinishChange(regenerateGeometry)
+textFolder.add(data, 'modifier', [ 'Engraving', 'Extrusion' ] ).onFinishChange(regenerateGeometry)
 textFolder.open()
 
 gui.open()
 
-//  change text engraving/extruding based on gui input
+//  change text engraving/extrusion based on gui input
 function regenerateGeometry() {
     let textGeometry
 
